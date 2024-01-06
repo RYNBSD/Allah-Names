@@ -8,7 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { enableScreens } from "react-native-screens";
 
 import { ThemeProvider } from "./context";
-import { Names } from "./screens";
+import { Names, Name } from "./screens";
 
 enableScreens();
 const { width, height } = Dimensions.get("window");
@@ -24,6 +24,7 @@ export default function App() {
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen name="Names" component={Names} />
+              <Stack.Screen name="Name" component={Name} />
             </Stack.Navigator>
           </NavigationContainer>
         </ThemeProvider>
