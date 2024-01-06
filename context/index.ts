@@ -1,3 +1,3 @@
 import { lazy } from "react";
 
-export const ThemeProvider = lazy(() => require("./Theme"));
+export const ThemeProvider = lazy(async () => await require("./Theme"));
