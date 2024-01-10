@@ -1,4 +1,2 @@
-import { lazy } from "react";
-
-export const Names = lazy(async () => await require("./Names.tsx"));
-export const Name = lazy(async () => await require("./Name.tsx"));
+export const Names = require("./Names.tsx").default;
+export const Name = require("./Name.tsx").default;
