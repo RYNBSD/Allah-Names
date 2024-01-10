@@ -7,6 +7,7 @@ import { Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { enableScreens } from "react-native-screens";
 
+import { ConfigProvider } from "./context";
 import { Names, Name } from "./screens";
 
 enableScreens();
@@ -19,12 +20,14 @@ export default function App() {
     <SafeAreaView style={{ width, height }}>
       <StatusBar style="auto" />
       <Suspense fallback={null}>
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Names">
-            <Stack.Screen name="Names" component={Names} />
-            <Stack.Screen name="Name" component={Name} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <ConfigProvider>
+          <NavigationContainer>
+            <Stack.Navigator initialRouteName="Names">
+              <Stack.Screen name="Names" component={Names} />
+              <Stack.Screen name="Name" component={Name} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ConfigProvider>
       </Suspense>
     </SafeAreaView>
   );
