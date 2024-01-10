@@ -9,3 +9,17 @@ export type Navigation = {
   navigation: NavigationProp<ParamListBase>;
   route: RouteProp<ParamListBase>;
 };
+
+export type Name = {
+  name: string;
+  desc: string;
+  transliteration: string;
+  en: {
+    meaning: string;
+    desc: string;
+  };
+  fr: {
+    meaning: string;
+    desc: string;
+  };
+};

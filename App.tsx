@@ -22,7 +22,7 @@ export default function App() {
       <Suspense fallback={null}>
         <ThemeProvider>
           <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator initialRouteName="Names">
               <Stack.Screen name="Names" component={Names} />
               <Stack.Screen name="Name" component={Name} />
             </Stack.Navigator>
