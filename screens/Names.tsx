@@ -1,31 +1,27 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { memo } from "react";
+import { Text, FlatList, TouchableOpacity } from "react-native";
 
-import { useNames } from "../hooks";
+import { ALLAH_NAMES } from "../constant";
 
-function Name({
-  name,
-  transliteration,
-}: {
-  name: string;
-  transliteration: string;
-}) {
-  return (
-    <View>
-      <Text>{name}</Text>
-      <Text>{transliteration}</Text>
-    </View>
-  );
-}
+const Name = memo(
+  ({ name, transliteration }: { name: string; transliteration: string }) => {
+    return (
+      <TouchableOpacity>
+        <Text>{name}</Text>
+        <Text>{transliteration}</Text>
+      </TouchableOpacity>
+    );
+  },
+);
 
 export default function Names() {
-  const names = useNames();
-
   return (
-    <View>
-      {names.map((name) => (
-        <Name name={name.name} transliteration={name.transliteration} />
-      ))}
-    </View>
+    <FlatList
+      data={ALLAH_NAMES}
+      renderItem={({ item: { name, transliteration } }) => (
+        <Name key={name} name={name} transliteration={transliteration} />
+      )}
+      keyExtractor={({ name }) => name}
+    />
   );
 }
