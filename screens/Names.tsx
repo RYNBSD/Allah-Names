@@ -2,24 +2,30 @@ import React, { memo } from "react";
 import { Text, FlatList, TouchableOpacity } from "react-native";
 
 import { ALLAH_NAMES } from "../constant";
+import type { Navigation } from "../types";
 
-const Name = memo(
-  ({ name, transliteration }: { name: string; transliteration: string }) => {
-    return (
-      <TouchableOpacity>
-        <Text>{name}</Text>
-        <Text>{transliteration}</Text>
-      </TouchableOpacity>
-    );
-  },
-);
+type NameProp = { name: string; transliteration: string; onPress: () => void };
 
-export default function Names() {
+const Name = memo(({ name, transliteration, onPress }: NameProp) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Text>{name}</Text>
+      <Text>{transliteration}</Text>
+    </TouchableOpacity>
+  );
+});
+
+export default function Names({ navigation }: Navigation) {
   return (
     <FlatList
       data={ALLAH_NAMES}
-      renderItem={({ item: { name, transliteration } }) => (
-        <Name key={name} name={name} transliteration={transliteration} />
+      renderItem={({ item }) => (
+        <Name
+          key={item.name}
+          name={item.name}
+          transliteration={item.transliteration}
+          onPress={() => navigation.navigate("Name", item)}
+        />
       )}
       keyExtractor={({ name }) => name}
     />
