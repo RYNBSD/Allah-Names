@@ -29,4 +29,6 @@ export type Config = {
   isEn: boolean;
   /** Theme */
   isDark: boolean;
+  toggleLanguage: () => void;
+  toggleTheme: () => void;
 };

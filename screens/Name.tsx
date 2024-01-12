@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { View, Text } from "react-native";
 
+import { useConfig } from "../context";
 import type { Navigation, Name as TName } from "../types";
 
 type Languages = "en" | "fr";
@@ -25,7 +26,8 @@ const SecondLanguage = memo(
 
 export default function Name({ route }: Navigation) {
   const { name, desc, transliteration, en, fr } = route.params as TName;
-  const isEn = false;
+  const { isEn } = useConfig()!;
+
   return (
     <View>
       <View>
