@@ -8,18 +8,30 @@ import {
   useCallback,
 } from "react";
 
-import type { Config } from "../types";
+type Config = {
+  isEn: boolean;
+  isDark: boolean;
+  toggleLanguage: () => void;
+  toggleTheme: () => void;
+};
 
-const ConfigContext = createContext<Config>({ isEn: true, isDark: true });
+type TConfig = Config | null;
+
+const ConfigContext = createContext<TConfig>(null);
 const CONFIG = "config";
 
+type StateConfig = Omit<Omit<Config, "toggleLanguage">, "toggleTheme">;
+
 export default function ConfigProvider({ children }: { children: ReactNode }) {
-  const [config, setConfig] = useState<Config>({ isEn: true, isDark: true });
+  const [config, setConfig] = useState<StateConfig>({
+    isEn: true,
+    isDark: true,
+  });
 
   useEffect(() => {
     AsyncStorage.getItem(CONFIG).then((config) => {
       if (typeof config === "string") {
-        const parse = JSON.parse(config) as Config;
+        const parse = JSON.parse(config) as StateConfig;
         setConfig(parse);
       }
     });
@@ -39,7 +51,15 @@ export default function ConfigProvider({ children }: { children: ReactNode }) {
   );
 
   return (
-    <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>
+    <ConfigContext.Provider
+      value={{
+        ...config,
+        toggleLanguage,
+        toggleTheme,
+      }}
+    >
+      {children}
+    </ConfigContext.Provider>
   );
 }
 

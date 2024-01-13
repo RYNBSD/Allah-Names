@@ -23,12 +23,3 @@ export type Name = {
     desc: string;
   };
 };
-
-export type Config = {
-  /** Second Language */
-  isEn: boolean;
-  /** Theme */
-  isDark: boolean;
-  toggleLanguage: () => void;
-  toggleTheme: () => void;
-};
