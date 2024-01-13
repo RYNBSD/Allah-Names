@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Text, FlatList, TouchableOpacity } from "react-native";
+import { Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 
 import { ALLAH_NAMES } from "../constant";
 import type { Navigation } from "../types";
@@ -31,3 +31,5 @@ export default function Names({ navigation }: Navigation) {
     />
   );
 }
+
+const styles = StyleSheet.create({});

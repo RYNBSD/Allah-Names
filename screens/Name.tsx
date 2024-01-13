@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import { useConfig } from "../context";
 import type { Navigation, Name as TName } from "../types";
@@ -43,3 +43,5 @@ export default function Name({ route }: Navigation) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({});
